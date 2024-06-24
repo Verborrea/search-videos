@@ -58,7 +58,7 @@
 	.p24 {
 		justify-content: center;
 		padding: 24px;
-		background: black;
+		background: var(--background);
 	}
 	.fc {
 		flex-direction: column;
@@ -107,6 +107,7 @@
 		}
 		a {
 			font-size: 32px;
+			padding-bottom: 2px;
 		}
 		header, form {
 			flex-direction: column;
