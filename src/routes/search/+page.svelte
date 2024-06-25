@@ -26,14 +26,18 @@
 			<svg class="mobile" xmlns="http://www.w3.org/2000/svg" width="36px" height="36px" viewBox="0 -960 960 960" fill="var(--text)"><path d="m794.19-94.67-263.24-263.3q-29.98 23.09-70.47 36.27-40.5 13.19-85.83 13.19-116.84 0-197.03-80.27-80.19-80.28-80.19-195.44t80.28-195.32q80.27-80.16 195.43-80.16 115.16 0 195.32 80.25 80.16 80.24 80.16 195.45 0 45.36-12.79 84.33t-37.57 72.32l264.97 263.83-69.04 68.85ZM373.26-404.94q75.75 0 127.34-51.73t51.59-127.2q0-75.46-51.59-127.43-51.59-51.96-127.28-51.96-76.25 0-127.85 51.96-51.6 51.97-51.6 127.43 0 75.47 51.55 127.2 51.54 51.73 127.84 51.73Z"/></svg>
 		</button>
 	</form>
-	<h1>Showing <strong>5</strong> results for: <strong>{data.query}</strong></h1>
+	<h1>Showing <strong>{data.videos.length}</strong> results for: <strong>{data.query}</strong></h1>
 	<div class="list g24">
+		{#each data.videos as video}
+		<Video {...video} />
+		{/each}
+		<!-- 
 		<Video alt="Original Nyan cat" src="https://jackrusher.com/images/journal/what-does-it-mean-to-buy-a-gif/nyan-cat.gif" />
 		<Video alt="Golden Nyan cat" src="https://www.bing.com/th/id/OGC.19089c1b3f0f183fc5805d02096aabb0?pid=1.7&rurl=https%3a%2f%2fwww.icegif.com%2fwp-content%2fuploads%2f2023%2f03%2ficegif-323.gif&ehk=wpQapM9%2bAroSoesMitBueqQVC3j7gS0PHlKIGKtJYIc%3d" />
 		<Video alt="Glitched Nyan cat" src="https://www.bing.com/th/id/OGC.b308cb0e0a2aa826dbaefcf1edaf634c?pid=1.7&rurl=https%3a%2f%2fc.tenor.com%2f-OAHd0lisIAAAAAC%2fnyan-cat.gif&ehk=JnGY02KiVNViqo%2b98rkKaZtPCQQQLne2NgXdwYnOAZM%3d" />
 		<Video alt="Handrawed Nyan cat" src="https://www.bing.com/th/id/OGC.df3699a94fa0bcb13b92e8dc36f0e834?pid=1.7&rurl=https%3a%2f%2forig00.deviantart.net%2f55af%2ff%2f2017%2f035%2fd%2ff%2fnyan_cat_by_finnjr63-daxtpz4.gif&ehk=41RXcON1l4%2b7TnIknASTtKBveIZ6n0ov0ae6pqN8oAQ%3d" />
 		<Video alt="80's Nyan cat" src="https://www.bing.com/th/id/OGC.838f896e3b71c925d0c0eb792c6180f8?pid=1.7&rurl=https%3a%2f%2fwww.icegif.com%2fwp-content%2fuploads%2f2022%2f09%2ficegif-713.gif&ehk=kZqMZ3SsbL535ajNeRgNkiz0g%2b9yyYVBpk6S%2bJlymuk%3d" />
-
+		-->
 	</div>
 </main>
 

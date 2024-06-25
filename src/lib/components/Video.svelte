@@ -1,25 +1,28 @@
 <script>
-	export let src, alt;
+	export let name, tags, url, thumbnail;
 </script>
 
 <div class="container">
-	<button type="button">
-		<img {src} {alt}>
+	<a href={url} target="_blank">
+		<img src={thumbnail} alt={name}>
 		<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<circle cx="24" cy="24" r="22" stroke="#FFFEF0" stroke-width="4"/>
 			<path d="M34 24L19 32.6603L19 15.3397L34 24Z" fill="#FFFEF0"/>
 		</svg>	
-	</button>
-	<p>{alt}</p>
+	</a>
+	<p>{name}: <span>{tags.join(', ')}</span></p>
 </div>
 
 <style>
-	button {
+	a {
 		position: relative;
 		padding: 0;
 		border: 0;
 		cursor: pointer;
 		width: 100%;
+	}
+	span {
+		color: gray;
 	}
 	img {
 		width: 100%;
@@ -44,10 +47,10 @@
 		transform: translate(-50%, -50%);
 		display: none;
 	}
-	button:hover img {
+	a:hover img {
 		filter: brightness(0.75);
 	}
-	button:hover svg {
+	a:hover svg {
 		display: block
 	}
 </style>

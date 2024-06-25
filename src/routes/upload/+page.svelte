@@ -1,13 +1,16 @@
 <script>
-	import { fly } from "svelte/transition";
+	import { enhance } from "$app/forms"
+	import { fly } from "svelte/transition"
 
 	let placeholder = "drop ur vid here"
+	let size = "0 B"
 	let loading = false
 	let done = false
 
 	function change(e) {
 		if (e.target.files.length > 0) {
 			placeholder = e.target.files[0].name
+			size = (e.target.files[0].size/1000000).toFixed(2) + ' MB'
 			disabled = false
 		} else {
 			disabled = true
@@ -16,12 +19,20 @@
 
 	function upload() {
 		loading = true
-		setTimeout(()=>{
+
+		return async ({ result, update }) => {
 			loading = false
-			done = true
-			document.querySelector('#video').value = ""
 			placeholder = "drop ur vid here"
-		}, 2000)
+			size = "0 B"
+			switch (result.type) {
+				case "success":
+					done = true
+					break;
+				default:
+					break;
+			}
+			await update();
+		}
 	}
 
 	$: if (done === true) {
@@ -43,15 +54,16 @@
 </div>
 {/if}
 <a href="/" class="btn">GO BACK</a>
-<form action="/upload" method="get" on:submit|preventDefault={upload}>
+<form method="POST" enctype="multipart/form-data" use:enhance={upload}>
 	<label for="video">
 		<div class="srq top lef"></div>
 		<div class="srq top rig"></div>
 		<div class="srq bot lef"></div>
 		<div class="srq bot rig"></div>
 		<h1>{placeholder}</h1>
+		<h2>{size}</h2>
 	</label>
-	<input type="file" name="video" id="video" hidden on:change={change} accept="video/mp4,video/x-m4v,video/*">
+	<input type="file" name="video" id="video" on:change={change} accept="video/mp4,video/x-m4v,video/*">
 	<button type="submit" class="btn" disabled={disabled || loading}>
 		{loading ? "LOADING" : "UPLOAD"}
 	</button>
@@ -74,6 +86,7 @@
 	}
 	label {
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		position: relative;
@@ -81,8 +94,11 @@
 		width: 316px;
 		height: 276px;
 	}
-	h1 {
+	h1, h2 {
 		text-align: center;
+	}
+	input {
+		display: none;
 	}
 	.top { top: -8px }
 	.rig { right: -8px }
