@@ -1,11 +1,16 @@
 <script>
+	import Video from "$lib/components/Video.svelte"
 	export let data
+
+	let query = data.query
+
+	$: disabled = query.length === 0
 </script>
 
 <main class="g24">
 	<form class="fc fl1 g24" action="search" method="get">
-		<a href="/" title="Home">
-			<svg height="100" viewBox="0 0 340 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<a class="fc" href="/" title="Home">
+			<svg class="logo" height="100" viewBox="0 0 340 168" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path class="gray" d="M0 166.479V1.88067H42.6306C71.5869 1.88067 94.7572 12.6978 94.7572 44.9607C94.7572 60.8794 87.2258 74.9417 70.7143 78.0835C91.1996 80.7138 99.8082 98.6671 99.8082 117.709C99.8082 148.781 80.9571 166.479 50.3082 166.479H0ZM36.1653 141.078C53.5881 141.078 64.8551 136.999 64.8551 117.099C64.8551 96.4471 54.9835 91.6985 36.1653 91.6985V141.078ZM36.1653 67.72C52.781 67.72 63.0367 64.7426 63.0367 45.9767C63.0367 29.9681 50.2111 26.2656 36.1653 26.2656V67.72Z" fill="#FFFEF0"/>
 				<path class="gray" d="M102.615 166.479V1.88067H176.158V26.672H138.78V67.5167H167.268V92.7145H138.78V141.891H176.562V166.479H102.615Z" fill="#FFFEF0"/>
 				<path class="gray" d="M279.186 166.479V28.9073H254.537V1.88067H340V28.9073H315.553V166.479H279.186Z" fill="#FFFEF0"/>
@@ -14,30 +19,27 @@
 		</a>
 		<div class="fc fl1 g24">
 			<label for="query">RESULTS FOR</label>
-			<input type="text" class="fl1" id="query" name="query" placeholder="CATS" value={data.query}>
-			<!-- <label for="query">VIDEOS</label> -->
+			<input type="text" class="fl1" id="query" name="query" placeholder="CATS" bind:value={query}>
 		</div>
-		<button type="submit" class="btn">
+		<button type="submit" class="btn" {disabled}>
 			<span class="desktop">SEARCH</span>
-			<svg class="mobile" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="var(--text)"><path d="m794.19-94.67-263.24-263.3q-29.98 23.09-70.47 36.27-40.5 13.19-85.83 13.19-116.84 0-197.03-80.27-80.19-80.28-80.19-195.44t80.28-195.32q80.27-80.16 195.43-80.16 115.16 0 195.32 80.25 80.16 80.24 80.16 195.45 0 45.36-12.79 84.33t-37.57 72.32l264.97 263.83-69.04 68.85ZM373.26-404.94q75.75 0 127.34-51.73t51.59-127.2q0-75.46-51.59-127.43-51.59-51.96-127.28-51.96-76.25 0-127.85 51.96-51.6 51.97-51.6 127.43 0 75.47 51.55 127.2 51.54 51.73 127.84 51.73Z"/></svg>
+			<svg class="mobile" xmlns="http://www.w3.org/2000/svg" width="36px" height="36px" viewBox="0 -960 960 960" fill="var(--text)"><path d="m794.19-94.67-263.24-263.3q-29.98 23.09-70.47 36.27-40.5 13.19-85.83 13.19-116.84 0-197.03-80.27-80.19-80.28-80.19-195.44t80.28-195.32q80.27-80.16 195.43-80.16 115.16 0 195.32 80.25 80.16 80.24 80.16 195.45 0 45.36-12.79 84.33t-37.57 72.32l264.97 263.83-69.04 68.85ZM373.26-404.94q75.75 0 127.34-51.73t51.59-127.2q0-75.46-51.59-127.43-51.59-51.96-127.28-51.96-76.25 0-127.85 51.96-51.6 51.97-51.6 127.43 0 75.47 51.55 127.2 51.54 51.73 127.84 51.73Z"/></svg>
 		</button>
 	</form>
-	<h1>Showing <strong>1000</strong> results for: <strong>{data.query}</strong></h1>
+	<h1>Showing <strong>5</strong> results for: <strong>{data.query}</strong></h1>
+	<div class="list g24">
+		<Video alt="Original Nyan cat" src="https://jackrusher.com/images/journal/what-does-it-mean-to-buy-a-gif/nyan-cat.gif" />
+		<Video alt="Golden Nyan cat" src="https://www.bing.com/th/id/OGC.19089c1b3f0f183fc5805d02096aabb0?pid=1.7&rurl=https%3a%2f%2fwww.icegif.com%2fwp-content%2fuploads%2f2023%2f03%2ficegif-323.gif&ehk=wpQapM9%2bAroSoesMitBueqQVC3j7gS0PHlKIGKtJYIc%3d" />
+		<Video alt="Glitched Nyan cat" src="https://www.bing.com/th/id/OGC.b308cb0e0a2aa826dbaefcf1edaf634c?pid=1.7&rurl=https%3a%2f%2fc.tenor.com%2f-OAHd0lisIAAAAAC%2fnyan-cat.gif&ehk=JnGY02KiVNViqo%2b98rkKaZtPCQQQLne2NgXdwYnOAZM%3d" />
+		<Video alt="Handrawed Nyan cat" src="https://www.bing.com/th/id/OGC.df3699a94fa0bcb13b92e8dc36f0e834?pid=1.7&rurl=https%3a%2f%2forig00.deviantart.net%2f55af%2ff%2f2017%2f035%2fd%2ff%2fnyan_cat_by_finnjr63-daxtpz4.gif&ehk=41RXcON1l4%2b7TnIknASTtKBveIZ6n0ov0ae6pqN8oAQ%3d" />
+		<Video alt="80's Nyan cat" src="https://www.bing.com/th/id/OGC.838f896e3b71c925d0c0eb792c6180f8?pid=1.7&rurl=https%3a%2f%2fwww.icegif.com%2fwp-content%2fuploads%2f2022%2f09%2ficegif-713.gif&ehk=kZqMZ3SsbL535ajNeRgNkiz0g%2b9yyYVBpk6S%2bJlymuk%3d" />
+
+	</div>
 </main>
 
 <style>
 	a {
 		align-self: stretch;
-	}
-	.fc {
-		display: flex;
-		align-items: center;
-	}
-	.fl1 {
-		flex: 1;
-	}
-	.g24 {
-		gap: 24px;
 	}
 	main {
 		display: flex;
@@ -58,20 +60,11 @@
 		background: transparent;
 		color: var(--text);
 	}
-	.mobile {
-		display: none;
-	}
-	svg {
-		flex-shrink: 0;
-		width: auto;
-	}
-	a:hover .gray{
-		fill: var(--accent);
+	.list {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
 	}
 	@media (max-width: 1100px) {
-		svg {
-			height: 64px;
-		}
 		label, button, input {
 			font-size: 32px;
 		}
@@ -81,22 +74,25 @@
 		.g24 {
 			gap: 16px;
 		}
+		.list {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 	@media (max-width: 700px) {
-		svg {
-			height: 32px;
+		input {
+			height: 56px;
 		}
-		.desktop, label {
+		label {
 			display: none;
-		}
-		.mobile {
-			display: block;
 		}
 		h1 {
 			font-size: 20px;
 		}
 		button {
 			padding: 8px;
+		}
+		.list {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>

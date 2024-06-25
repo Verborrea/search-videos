@@ -2,7 +2,6 @@
 	import { fly } from "svelte/transition";
 
 	let placeholder = "drop ur vid here"
-	let disabled = true
 	let loading = false
 	let done = false
 
@@ -20,6 +19,8 @@
 		setTimeout(()=>{
 			loading = false
 			done = true
+			document.querySelector('#video').value = ""
+			placeholder = "drop ur vid here"
 		}, 2000)
 	}
 
@@ -28,6 +29,7 @@
 			done = false
 		}, 3000)
 	}
+	$: disabled = placeholder === "drop ur vid here"
 </script>
 
 <svelte:head>
